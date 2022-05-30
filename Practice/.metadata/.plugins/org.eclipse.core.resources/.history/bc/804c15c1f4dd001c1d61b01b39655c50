@@ -1,0 +1,19 @@
+package com.altimetrik.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.altimetrik.dto.EmployeeDTO;
+import com.altimetrik.model.Employee;
+
+public interface CompanyService {
+
+	ResponseEntity<List<EmployeeDTO>> getEmployeesInProject(String prjtId, String deptId);
+
+	ResponseEntity<List<EmployeeDTO>> getEmployeesInDept(String empId);
+
+	ResponseEntity<Void> deleteEmpFrmPrjt(String prjtId, String empId);
+
+
+}

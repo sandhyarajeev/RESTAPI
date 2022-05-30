@@ -1,0 +1,14 @@
+package com.altimetrik.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class ProjectDeptId implements Serializable {
+
+	private Department dept;
+	
+	private String projId;
+}

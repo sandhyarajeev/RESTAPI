@@ -1,0 +1,31 @@
+package com.altimetrik.dto;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import com.altimetrik.model.Department;
+
+public class EmployeeDTO {
+
+	private String empId;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String address1;
+	
+	private String address2;
+	
+	private long contactNum;
+	
+
+    Set<Department> deptSet = new HashSet<>();
+
+	public EmployeeDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

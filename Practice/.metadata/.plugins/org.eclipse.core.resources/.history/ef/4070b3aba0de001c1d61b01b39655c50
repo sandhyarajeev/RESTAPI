@@ -1,0 +1,40 @@
+package com.altimetrik.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Entity
+@Getter
+@Setter
+@IdClass(EmpDeptProjectId.class)
+public class EmpDeptProject {
+
+//
+//	@Id
+//	@ManyToOne
+//	@JoinColumn(name="prj_dept_id",nullable=false) 
+//	private ProjectDept prjtDept;
+
+
+	@Id
+//	@ManyToOne   
+	@Column(name="deptId",nullable=false)
+	private String deptId;
+
+	@Id
+	@Column(name="projId" , nullable = false)
+	private String projId;
+
+	@Id
+	@Column(name="empId",nullable=false)
+	private String empId;
+
+
+}

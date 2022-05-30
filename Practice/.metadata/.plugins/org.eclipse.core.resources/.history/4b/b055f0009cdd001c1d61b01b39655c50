@@ -1,0 +1,12 @@
+package com.altimetrik.model;
+
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+public class ProjectDeptId {
+
+	private Department dept;
+	
+	private String projId;
+}

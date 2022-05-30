@@ -1,0 +1,30 @@
+package com.altimetrik.serviceimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.altimetrik.model.Department;
+import com.altimetrik.repository.DepartmentRepo;
+import com.altimetrik.repository.ProjectDeptRepo;
+import com.altimetrik.service.CompanyService;
+
+@Service
+public class CompanyServiceImpl implements CompanyService {
+	
+	@Autowired
+	ProjectDeptRepo prjtDeptRepo;
+	
+	@Autowired
+	DepartmentRepo deptRepo;
+
+	@Override
+	public ResponseEntity<List<Object>> getEmployeesInProject(int prjtId, int deptId) {
+		
+		prjtDeptRepo.
+		return null;
+	}
+
+}

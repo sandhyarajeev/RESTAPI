@@ -1,0 +1,4 @@
+project.employees.error=No employees in project
+project.employees.success=Employees in project
+employee.delete.success=Employee removed from project
+employee.delete.failure=Employee not found in project	

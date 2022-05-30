@@ -1,0 +1,6 @@
+package com.altimetrik.model;
+
+@Entity
+public class EmpDeptProject {
+
+}

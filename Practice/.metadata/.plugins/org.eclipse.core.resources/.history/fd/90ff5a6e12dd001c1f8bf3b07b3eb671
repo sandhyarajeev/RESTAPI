@@ -1,0 +1,9 @@
+package com.altimetrik.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.altimetrik.model.EmployeeDept;
+
+public interface EmployeeDeptRepo extends JpaRepository<EmployeeDept, EmployeeDeptId> {
+
+}

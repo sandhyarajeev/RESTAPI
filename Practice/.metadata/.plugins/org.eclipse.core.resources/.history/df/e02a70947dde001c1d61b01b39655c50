@@ -1,0 +1,32 @@
+package com.altimetrik.model;
+
+import java.io.Serializable;
+
+import javax.persistence.ManyToOne;
+
+public class EmpDeptProjectId implements Serializable{
+	
+	private String deptId;
+	
+	private String projId;
+	
+	private String empId;
+	
+	
+
+	public EmpDeptProjectId() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public EmpDeptProjectId(Department dept, String projId, String empId) {
+		super();
+		this.dept = dept;
+		this.projId = projId;
+		this.empId = empId;
+	}
+	
+	
+}

@@ -1,0 +1,64 @@
+package com.altimetrik.service;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.List;
+
+import org.assertj.core.api.Assertions;
+import org.assertj.core.util.Arrays;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
+
+import com.altimetrik.dto.EmployeeDTO;
+import com.altimetrik.model.Employee;
+import com.altimetrik.repository.EmployeeRepo;
+
+@SpringBootTest(classes= {com.altimetrik.AltimetrikApplication.class})
+public class CompanyServiceTest {
+
+	@Autowired
+	private CompanyService companyService;
+	
+	@MockBean
+	private EmployeeRepo empRepo;
+	
+	@Test
+	public void getEmployeesInProject() {
+		Employee emp1 = new Employee();
+		emp1.setContactNum(43432L);
+		emp1.setFirstName("sandhya");
+		emp1.setLastName("rajeev");
+		emp1.setEmpId("E001");
+		Employee emp2 = new Employee();
+		emp1.setContactNum(43432L);
+		emp1.setFirstName("sandhya");
+		emp1.setLastName("rajeev");
+		emp1.setEmpId("E001");
+		List<Employee> empList = null;
+		empList.add(emp1);
+		empList.add(emp2);
+		List<EmployeeDTO> empDtoList = null ;
+		EmployeeDTO empDTO1 = new EmployeeDTO();
+		empDTO1.setContactNum(43432L);
+		empDTO1.setFirstName("sandhya");
+		empDTO1.setLastName("rajeev");
+		empDTO1.setEmpId("E001");
+		EmployeeDTO empDTO2 = new EmployeeDTO();
+		empDTO2.setContactNum(43432L);
+		empDTO2.setFirstName("sandhya");
+		empDTO2.setLastName("rajeev");
+		empDTO2.setEmpId("E001");
+		empDtoList.add(empDTO1);
+		empDtoList.add(empDTO2);
+		
+		when(empRepo.getEmployeesInProject("P001", "D001")).thenReturn(empList);
+		when(modelMapper.map(emp, EmployeeDTO.class)).thenReturn(empDtoList);
+		
+		assertEquals(companyService.getEmployeesInProject("P001", "D001").getStatusCode().);
+		Assertions.assertThat(companyService.getEmployeesInProject("P001", "D001").getStatusCode()).
+	}
+}

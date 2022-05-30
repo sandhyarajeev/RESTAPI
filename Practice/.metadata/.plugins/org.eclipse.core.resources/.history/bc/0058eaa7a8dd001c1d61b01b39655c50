@@ -1,0 +1,15 @@
+package com.altimetrik.service;
+
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
+import com.altimetrik.model.Employee;
+
+public interface CompanyService {
+
+	ResponseEntity<List<Employee>> getEmployeesInProject(String prjtId, String deptId);
+
+	ResponseEntity<List<Employee>> getEmployeesInDept(String empId);
+
+}

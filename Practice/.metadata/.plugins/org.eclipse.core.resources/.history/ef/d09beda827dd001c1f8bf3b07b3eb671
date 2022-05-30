@@ -1,0 +1,10 @@
+#server.port=8111
+server.servlet.context-path=/altimetrik
+
+spring.jpa.show-sql=true
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.h2.console.enabled=true
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.hibernate.ddl-auto = create
+#spring.jpa.hibernate.ddl-auto = update
+

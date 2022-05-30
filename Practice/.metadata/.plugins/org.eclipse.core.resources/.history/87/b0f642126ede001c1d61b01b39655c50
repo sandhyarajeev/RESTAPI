@@ -1,0 +1,20 @@
+package com.altimetrik.dto;
+
+import com.altimetrik.model.Department;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class EmpDeptProjectDTO {
+	
+
+	private String deptId;
+	
+	private String projId;
+	
+	private String empId;
+	
+
+}

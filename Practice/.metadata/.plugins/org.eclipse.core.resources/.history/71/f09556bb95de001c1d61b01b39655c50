@@ -1,0 +1,110 @@
+package com.altimetrik.serviceimpl;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.altimetrik.controller.ResponseHandler;
+import com.altimetrik.dto.EmployeeDTO;
+import com.altimetrik.model.Department;
+import com.altimetrik.model.EmpDeptProject;
+import com.altimetrik.model.EmpDeptProjectId;
+import com.altimetrik.model.Employee;
+import com.altimetrik.repository.DepartmentRepo;
+import com.altimetrik.repository.EmpDeptProjectRepo;
+import com.altimetrik.repository.EmployeeRepo;
+import com.altimetrik.repository.ProjectDeptRepo;
+import com.altimetrik.service.CompanyService;
+
+@Service
+public class CompanyServiceImpl implements CompanyService {
+	
+	@Autowired
+	ProjectDeptRepo prjtDeptRepo;
+	
+	@Autowired
+	DepartmentRepo deptRepo;
+	
+	@Autowired
+	EmployeeRepo empRepo;
+		
+	@Autowired
+	EmpDeptProjectRepo empDeptProjectRepo;
+	
+	@Autowired
+	ModelMapper modelMapper;
+	
+	@Autowired
+	MessageSource msgSource;
+
+	@Override
+	public ResponseEntity<Object> getEmployeesInProject(String prjtId, String deptId) {
+		System.out.println("CompanyServiceImpl.getEmployeesInProject() "+prjtId+" "+deptId);
+//		Department dept = deptRepo.findByDeptId(deptId);
+		List<Employee>empList = empRepo.getEmployeesInProject( prjtId,  deptId); 
+		ResponseEntity<List<Employee>> response = null;
+		List<EmployeeDTO> empDtoList = null ;
+		HttpStatus status;
+		String message;
+		if(!empList.isEmpty()) {
+			empDtoList = empList.stream().map(this::convert).collect(Collectors.toList());
+			status = HttpStatus.OK;
+			message = msgSource.getMessage("project.employees.success", null, "", LocaleContextHolder.getLocale());
+		}else {
+					
+			status = HttpStatus.NO_CONTENT;
+			message = msgSource.getMessage("project.employees.error", null, "", LocaleContextHolder.getLocale());
+			
+		}
+		return ResponseHandler.generateResponse(message, status,empDtoList);
+	}
+
+	@Override
+	public ResponseEntity<List<EmployeeDTO>> getEmployeesInDept(String deptId) {
+		List<Employee> empList = empRepo.getEmployeesInDept(deptId);
+		ResponseEntity<List<EmployeeDTO>> response;
+		List<EmployeeDTO> empDtoList = null ;
+		HttpStatus status;
+		if(!empList.isEmpty()) {
+			empDtoList = empList.stream().map(this::convert).collect(Collectors.toList());
+			status = HttpStatus.OK;
+		}else {
+					
+			status = HttpStatus.NO_CONTENT;
+		}
+		return new ResponseEntity<List<EmployeeDTO>>(empDtoList, status);
+	}
+
+	private EmployeeDTO convert(Employee emp) {
+		EmployeeDTO empDto = modelMapper.map(emp, EmployeeDTO.class);
+		return empDto;
+	}
+
+	@Override
+	public ResponseEntity<Void> deleteEmpFrmPrjt(String prjtId, String empId,String deptId) {
+		Department dept = deptRepo.findByDeptId(deptId);
+		EmpDeptProjectId empDeptProjectId = new EmpDeptProjectId(deptId, prjtId, empId);
+		Optional<EmpDeptProject> empDeptPrjt = empDeptProjectRepo.findById(empDeptProjectId);
+		HttpStatus status = null;
+		System.out.println("CompanyServiceImpl.deleteEmpFrmPrjt()"+empDeptPrjt.isPresent());
+		if(empDeptPrjt.isPresent()) {
+			System.out.println("CompanyServiceImpl.deleteEmpFrmPrjt() "+empDeptPrjt.get().getEmpId()
+					+ " "+empDeptPrjt.get().getProjId()) ;
+			//EmpDeptProjectDTO empDeptPjtDTO = convertEmpDeptPrjt(empDeptPrjt.get());
+//			empDeptProjectRepo.delete(empDeptPrjt.get());
+			empDeptProjectRepo.deleteById(empDeptProjectId);
+			status =  HttpStatus.OK;
+		}else
+			status = HttpStatus.NO_CONTENT;
+		return new ResponseEntity<Void>(status);
+	}
+
+}

@@ -1,0 +1,18 @@
+package com.altimetrik.model;
+
+import java.io.Serializable;
+
+public class EmpDeptProjectId implements Serializable{
+
+	private ProjectDept prjtDept;
+	
+	private Employee employee;
+
+	public EmpDeptProjectId(ProjectDept prjtDept, Employee employee) {
+		super();
+		this.prjtDept = prjtDept;
+		this.employee = employee;
+	}
+	
+	
+}

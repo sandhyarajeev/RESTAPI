@@ -1,0 +1,12 @@
+package com.altimetrik.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class EmpDeptProject {
+	@Id
+	private int empId;
+	@Id
+	private int deptId;
+}

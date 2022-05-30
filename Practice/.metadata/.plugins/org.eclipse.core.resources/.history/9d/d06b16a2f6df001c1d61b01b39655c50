@@ -1,0 +1,4 @@
+sonar.projectKey=com.altimetrik
+sonar.sources=src
+sonar.login=admin
+sonar.password=admin1

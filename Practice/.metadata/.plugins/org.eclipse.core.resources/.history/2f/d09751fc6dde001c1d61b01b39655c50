@@ -1,0 +1,36 @@
+package com.altimetrik.dto;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import com.altimetrik.model.Department;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class EmployeeDTO {
+
+	private String empId;
+	
+	private String firstName;
+	
+	private String lastName;
+	
+	private String address1;
+	
+	private String address2;
+	
+	private long contactNum;
+	
+	
+    
+
+	public EmployeeDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

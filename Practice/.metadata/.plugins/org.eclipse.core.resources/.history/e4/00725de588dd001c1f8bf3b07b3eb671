@@ -1,0 +1,44 @@
+package com.altimetrik.serviceimpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.altimetrik.model.Department;
+import com.altimetrik.model.Employee;
+import com.altimetrik.model.ProjectDept;
+import com.altimetrik.repository.DepartmentRepo;
+import com.altimetrik.repository.EmpDeptProjectRepo;
+import com.altimetrik.repository.ProjectDeptRepo;
+import com.altimetrik.service.CompanyService;
+
+@Service
+public class CompanyServiceImpl implements CompanyService {
+	
+	@Autowired
+	ProjectDeptRepo prjtDeptRepo;
+	
+	@Autowired
+	DepartmentRepo deptRepo;
+	
+	@Autowired
+	EmpDeptProjectRepo empDeptProjectRepo;
+
+	@Override
+	public ResponseEntity<List<Employee>> getEmployeesInProject(String prjtId, String deptId) {
+		Optional<Department> opt = deptRepo.findById(deptId);
+		System.out.println("CompanyServiceImpl.getEmployeesInProject()");
+		Department dept = null;
+		if(opt.isPresent())
+			dept = opt.get();
+		ProjectDept prjtDept = prjtDeptRepo.getPrjtDept(prjtId, dept);
+		List<Employee> empList= empDeptProjectRepo.findEmployees(prjtDept);
+		ResponseEntity<List<Employee>> response = new ResponseEntity<List<Employee>>(empList, HttpStatus.FOUND);
+		return response;
+	}
+
+}

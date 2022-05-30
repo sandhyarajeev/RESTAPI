@@ -1,0 +1,16 @@
+package com.altimetrik.model;
+
+public class EmpDeptProjectId {
+
+	private EmpDeptProject empDeptProject;
+	
+	private Employee employee;
+
+	public EmpDeptProjectId(EmpDeptProject empDeptProject, Employee employee) {
+		super();
+		this.empDeptProject = empDeptProject;
+		this.employee = employee;
+	}
+	
+	
+}

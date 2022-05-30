@@ -1,0 +1,5 @@
+package com.altimetrik.repository;
+
+public interface EmployeeDeptRepo {
+
+}

@@ -1,0 +1,28 @@
+package com.altimetrik.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.altimetrik.model.Employee;
+import com.altimetrik.service.CompanyService;
+
+@RestController
+public class CompanyController {
+
+	@Autowired
+	private CompanyService companyService;
+	
+	//@RequestMapping(value="/getEmpsInPrjt", method=RequestMethod.GET)
+	@GetMapping("/getEmpsInPrjt/{prjtId}/{deptId}")
+	public ResponseEntity<List<Employee>> getEmployeesInProject(@PathVariable("prjtId") int prjtId, @PathVariable("deptId") int deptId) {
+		System.out.println("CompanyController.getEmployeesInProject()");
+		return companyService.getEmployeesInProject(prjtId,deptId);
+	}
+}

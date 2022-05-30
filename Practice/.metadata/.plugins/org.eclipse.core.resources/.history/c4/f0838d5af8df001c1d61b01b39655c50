@@ -1,0 +1,3 @@
+sonar.sources=src
+sonar.login=admin
+sonar.password=admin1

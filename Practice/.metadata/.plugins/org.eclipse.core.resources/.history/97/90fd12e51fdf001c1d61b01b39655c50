@@ -1,0 +1,34 @@
+package com.altimetrik.service;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+
+import com.altimetrik.model.Employee;
+import com.altimetrik.repository.EmployeeRepo;
+
+@SpringBootTest(classes= {com.altimetrik.AltimetrikApplication.class})
+public class CompanyServiceTest {
+
+	@Autowired
+	private CompanyService companyService;
+	
+	@MockBean
+	private EmployeeRepo empRepo;
+	
+	@Test
+	public void getEmployeesInProject() {
+		Employee emp1 = new Employee();
+		emp1.setContactNum(43432L);
+		emp1.setFirstName("sandhya");
+		emp1.setLastName("rajeev");
+		emp1.setEmpId("E001");
+		
+		when(empRepo.getEmployeesInProject("","")).thenReturn(Stream.of
+				(t1, t2)
+				.collect(Collectors.toList()));
+	}
+}

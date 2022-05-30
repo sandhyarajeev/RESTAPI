@@ -1,0 +1,22 @@
+package com.altimetrik;
+
+import org.junit.jupiter.api.Test;
+import org.junit.platform.suite.api.SelectPackages;
+import org.junit.platform.suite.api.Suite;
+import org.junit.platform.suite.api.SuiteDisplayName;
+import org.springframework.test.context.ContextConfiguration;
+
+@Suite
+@ContextConfiguration
+@SuiteDisplayName("Tenant Service Test Suite")
+@SelectPackages({"com.altimetrik.controller.service",
+		"com.altimetrik.controller",
+		"com.altimetrik"
+		})
+class AltimetrikApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CompanyServiceTest" project="Altimetrik" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.altimetrik.service.CompanyServiceTest" time="0.179" displayname="CompanyServiceTest" uniqueid="[engine:junit-jupiter]/[class:com.altimetrik.service.CompanyServiceTest]">
+    <testcase name="getEmployeesInProject" classname="com.altimetrik.service.CompanyServiceTest" time="0.179" displayname="getEmployeesInProject()" uniqueid="[engine:junit-jupiter]/[class:com.altimetrik.service.CompanyServiceTest]/[method:getEmployeesInProject()]"/>
+  </testsuite>
+</testrun>

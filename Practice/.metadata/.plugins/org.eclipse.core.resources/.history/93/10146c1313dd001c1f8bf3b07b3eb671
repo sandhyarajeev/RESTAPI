@@ -1,0 +1,7 @@
+package com.altimetrik.serviceimpl;
+
+import CompanyService;
+
+public class CompanyServiceImpl extends CompanyService {
+
+}

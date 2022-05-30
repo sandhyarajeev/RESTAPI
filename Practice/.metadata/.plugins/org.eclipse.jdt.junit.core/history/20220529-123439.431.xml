@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CompanyControllerTest" project="Altimetrik" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.altimetrik.controller.CompanyControllerTest" time="0.406" displayname="CompanyControllerTest" uniqueid="[engine:junit-jupiter]/[class:com.altimetrik.controller.CompanyControllerTest]">
+    <testcase name="getEmployeesInPrjt" classname="com.altimetrik.controller.CompanyControllerTest" time="0.329" displayname="getEmployeesInPrjt()" uniqueid="[engine:junit-jupiter]/[class:com.altimetrik.controller.CompanyControllerTest]/[method:getEmployeesInPrjt()]"/>
+    <testcase name="deleteEmployeeFromPjt" classname="com.altimetrik.controller.CompanyControllerTest" time="0.077" displayname="deleteEmployeeFromPjt()" uniqueid="[engine:junit-jupiter]/[class:com.altimetrik.controller.CompanyControllerTest]/[method:deleteEmployeeFromPjt()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,39 @@
+package com.altimetrik.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.altimetrik.dto.EmployeeDTO;
+import com.altimetrik.model.Employee;
+import com.altimetrik.service.CompanyService;
+
+@RestController
+public class CompanyController {
+
+	@Autowired
+	private CompanyService companyService;
+	
+	@GetMapping("/getEmpsInPrjt/{prjtId}/{deptId}")
+	public ResponseEntity<List<EmployeeDTO>> getEmployeesInProject(@PathVariable("prjtId") String prjtId, @PathVariable("deptId") String deptId) {
+		System.out.println("CompanyController.getEmployeesInProject()");
+		return companyService.getEmployeesInProject(prjtId,deptId);
+	}
+	
+	@GetMapping("/getEmpsInDept/{deptId}")
+	public ResponseEntity<List<EmployeeDTO>> getEmployeesInDept( @PathVariable("deptId") String deptId) {
+		System.out.println("CompanyController.getEmployeesInDept()");
+		return companyService.getEmployeesInDept(deptId);
+	}
+	
+	@DeleteMapping("/deleteEmpFrmPrjt/{empId}/{prjtId}")
+	public ResponseEntity<Void> deleteEmpFrmPrjt(@PathVariable("prjtId") String prjtId, @PathVariable("empId") String empId, @PathVariable("deptId") String deptId){
+	return companyService.deleteEmpFrmPrjt(prjtId,empId,deptId);	
+	}
+
+}

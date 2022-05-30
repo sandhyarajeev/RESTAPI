@@ -1,0 +1,10 @@
+package com.altimetrik.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.altimetrik.model.Department;
+
+@Repository
+public interface DepartmentRepo extends JpaRepository<Department, Integer> {
+
+}

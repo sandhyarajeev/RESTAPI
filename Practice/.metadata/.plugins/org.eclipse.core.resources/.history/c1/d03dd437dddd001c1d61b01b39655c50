@@ -1,0 +1,21 @@
+package com.altimetrik.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
+import com.altimetrik.model.Employee;
+
+@Repository
+public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
+
+	//@Query("select e from employee e join e.EmployeeDept d where d.deptId=:deptId")
+//	 SELECT h FROM Hospital h
+//     INNER JOIN Medical_Service m ON h.hospital_id = m.hospital_id
+//     WHERE h.Postcode = :postcode AND m.Medical_name = :medical
+	@Query("select e from Employee e inner join EmployeeDept d where d.deptId=:deptId and d.empId=e.empId")
+	List<Employee> getEmployeesInDept(String deptId);
+
+}

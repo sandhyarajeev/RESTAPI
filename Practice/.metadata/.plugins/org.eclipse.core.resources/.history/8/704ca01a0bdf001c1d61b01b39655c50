@@ -1,0 +1,63 @@
+package com.altimetrik.controller;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.altimetrik.model.Employee;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+@TestInstance(Lifecycle.PER_CLASS)
+@SpringBootTest (classes = {com.altimetrik.AltimetrikApplication.class})
+public class CompanyControllerTest {
+
+	private MockMvc mockMvc;
+
+	@Autowired
+	private ObjectMapper objectMapper;
+
+	@Autowired
+	private WebApplicationContext context;
+	
+	@BeforeAll
+	public void setup() {
+		mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+		assertNotNull(mockMvc);
+	}
+	
+	@Test
+	public void getEmployeesInPrjt() throws Exception {
+		System.out.println("CompanyControllerTest.getEmployeesInPrjt()");
+		ResultActions ra = mockMvc.perform(MockMvcRequestBuilders.get("/getEmpsInPrjt/"+"P001"+"D001"));
+		System.out.println(ra.andExpect(status().is(200)));
+		ra.andExpect(status().is(200));
+		
+		String resultStr = ra.andReturn().getResponse().getContentAsString();
+		
+		   //2. Convert JSON to List of Person objects
+        //Define Custom Type reference for List<Person> type
+        TypeReference<List<Employee>> mapType = new TypeReference<List<Employee>>() {};
+        List<Employee> jsonToPersonList = objectMapper.readValue(resultStr, mapType);
+        System.out.println("\n2. Convert JSON to List of person objects :");
+         
+        jsonToPersonList.forEach(System.out::println);
+        
+        assertEquals(jsonToPersonList.size(), 2);
+	}
+
+}

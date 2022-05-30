@@ -1,0 +1,19 @@
+package com.altimetrik.model;
+
+import javax.persistence.Embeddable;
+
+public class EmpDeptId {
+	
+	private int empId;
+	
+	private int deptId;
+
+	public EmpDeptId(int empId, int deptId) {
+		super();
+		this.empId = empId;
+		this.deptId = deptId;
+	}
+	
+	
+
+}

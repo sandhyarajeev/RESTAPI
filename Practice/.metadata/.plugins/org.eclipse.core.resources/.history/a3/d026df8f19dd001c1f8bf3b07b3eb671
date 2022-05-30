@@ -1,0 +1,5 @@
+package com.altimetrik.service;
+
+public interface CompanyService {
+
+}
